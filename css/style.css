@@ -120,6 +120,8 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 [data-theme="dark"] .lede{ color:#B9C7D6; }
 .text-white .lede, .on-dark .lede{ color: #C7D6E5; }
 .hl-gold{ color: var(--gold); }
+.hero-subline{ font-size: 0.5em; font-weight: 600; display:inline-block; }
+@media (max-width: 640px){ .hero-subline{ font-size: 0.62em; } }
 
 @media (max-width: 1024px){
   h1.display{ font-size: 42px; }
