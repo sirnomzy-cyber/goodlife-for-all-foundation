@@ -557,6 +557,24 @@ body.high-contrast{ filter: contrast(1.2); }
 .footer-bottom .legal-links{ display:flex; gap: var(--s-3); }
 .footer-bottom a:hover{ color:#fff; }
 
+/* ---------- Leadership Grid (dark, full-bleed photo cards) ---------- */
+.leader-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.leader-card{ background:var(--navy-soft); border-radius:20px; overflow:hidden; position:relative; border-bottom:3px solid transparent; transition:border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.leader-card:hover{ border-bottom-color:var(--gold); transform:translateY(-6px); box-shadow:0 20px 40px -12px rgba(0,0,0,.4); }
+.leader-photo{ position:relative; height:280px; overflow:hidden; }
+.leader-photo img{ width:100%; height:100%; object-fit:cover; border-radius:0; display:block; transition:transform .6s var(--ease); }
+.leader-card:hover .leader-photo img{ transform:scale(1.07); }
+.leader-social{ position:absolute; top:16px; right:16px; display:flex; flex-direction:column; gap:8px; opacity:0; transform:translateY(-10px); transition:all .3s var(--ease); }
+.leader-card:hover .leader-social{ opacity:1; transform:none; }
+.leader-social a{ width:34px; height:34px; border-radius:8px; background:var(--gold); color:var(--navy); display:flex; align-items:center; justify-content:center; font-size:14px; transition:background .3s var(--ease); }
+.leader-social a:hover{ background:#fff; }
+.leader-info{ padding:22px 20px; }
+.leader-info h3{ color:#fff; font-size:17px; font-family:var(--font-head); font-weight:700; margin-bottom:4px; }
+.leader-role{ color:var(--gold); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; }
+.leader-bio{ color:rgba(255,255,255,.65); font-size:13.5px; line-height:1.6; }
+@media (max-width:900px){ .leader-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px){ .leader-grid{ grid-template-columns:1fr; } }
+
 /* ---------- Program Detail Modal ---------- */
 .modal-overlay{ position:fixed; inset:0; background:rgba(8,28,46,.62); backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px); z-index:2500; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .35s var(--ease); padding:24px; }
 .modal-overlay.open{ opacity:1; pointer-events:auto; }
