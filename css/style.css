@@ -472,19 +472,23 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 
 /* Donation amount cards */
 .amount-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: var(--s-3); margin-bottom: var(--s-4); }
-@media (max-width:700px){
-  .amount-grid{ grid-template-columns: repeat(2,1fr); }
-  .amount-card{ padding: 16px 12px; }
-  .amount-card .amt{ font-size:19px; }
-  .amount-card p{ font-size:12.5px; }
-}
-.amount-card{ border:2px solid var(--gray-200); border-radius: var(--radius-card); padding: var(--s-3); cursor:pointer; text-align:center; transition: all .3s var(--ease); background:#fff; }
+@media (max-width:700px){ .amount-grid{ grid-template-columns: repeat(2,1fr); } }
+.amount-card{ border:2px solid var(--gray-200); border-radius: var(--radius-card); padding: var(--s-3); cursor:pointer; text-align:center; transition: all .3s var(--ease); background:#fff; min-width:0; }
 [data-theme="dark"] .amount-card{ background: var(--gray-50); }
 .amount-card:hover{ border-color: var(--blue); transform: translateY(-4px); }
 .amount-card.selected{ border-color: var(--blue); background: var(--blue-light); }
-.amount-card .amt{ font-family: var(--font-head); font-weight:800; font-size:24px; color: var(--blue); }
+.amount-card .amt{ font-family: var(--font-head); font-weight:800; font-size:24px; color: var(--blue); white-space:nowrap; }
 .amount-card p{ font-size:13.5px; color:#5A6B7B; margin-top:6px; }
 [data-theme="dark"] .amount-card p{ color:#9FB0C1; }
+@media (max-width:700px){
+  .amount-grid{ gap: 10px; }
+  .amount-card{ padding: 12px 6px; }
+  .amount-card .amt{ font-size: 15px; }
+  .amount-card p{ font-size: 11px; margin-top:4px; }
+}
+@media (max-width:380px){
+  .amount-card .amt{ font-size: 13px; }
+}
 .toggle-pair{ display:inline-flex; background: var(--gray-100); border-radius:999px; padding:4px; margin-bottom: var(--s-4); }
 .toggle-pair button{ padding:10px 22px; border-radius:999px; font-weight:600; font-size:14px; transition: all .3s var(--ease); }
 .toggle-pair button.active{ background: var(--blue); color:#fff; }
