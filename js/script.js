@@ -317,6 +317,7 @@
       var gridNGN = document.querySelector("#amountGridNGN");
       var gridUSD = document.querySelector("#amountGridUSD");
       var usdInfo = document.querySelector("#usdAccountInfo");
+      var ngnInfo = document.querySelector("#ngnAccountInfo");
       var currencyField = document.querySelector("#donationCurrency");
       var customLabel = document.querySelector("#customAmountLabel");
       var customField = document.querySelector("#customAmountField");
@@ -333,6 +334,7 @@
           if(gridNGN){ gridNGN.style.display = isUSD ? "none" : "grid"; }
           if(gridUSD){ gridUSD.style.display = isUSD ? "grid" : "none"; }
           if(usdInfo){ usdInfo.style.display = isUSD ? "block" : "none"; }
+          if(ngnInfo){ ngnInfo.style.display = isUSD ? "none" : "block"; }
           if(currencyField){ currencyField.value = isUSD ? "USD" : "NGN"; }
           if(customLabel){ customLabel.textContent = isUSD ? "Custom Amount ($)" : "Custom Amount (₦)"; }
 
