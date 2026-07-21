@@ -317,8 +317,8 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap: var(--s-4); }
 .grid-4{ display:grid; grid-template-columns: repeat(4,1fr); gap: var(--s-3); }
 .grid-5{ grid-template-columns: repeat(5,1fr) !important; }
-@media (max-width: 1024px){ .grid-4{ grid-template-columns: repeat(2,1fr);} .grid-3{ grid-template-columns: repeat(2,1fr);} .grid-5{ grid-template-columns: repeat(3,1fr) !important; } }
-@media (max-width: 640px){ .grid-4, .grid-3, .grid-2{ grid-template-columns: 1fr; } .grid-5{ grid-template-columns: repeat(2,1fr) !important; } }
+@media (max-width: 1024px){ .grid-4{ grid-template-columns: repeat(2,1fr);} .grid-3{ grid-template-columns: repeat(2,1fr);} }
+@media (max-width: 640px){ .grid-4, .grid-3, .grid-2{ grid-template-columns: 1fr; } .grid-5{ gap:8px; } }
 
 /* Bento grid */
 .bento{ display:grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; gap: var(--s-3); }
@@ -397,6 +397,12 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 [data-theme="dark"] .stat-card .stat-num{ color:#fff; }
 .stat-card .stat-label{ color:#5A6B7B; }
 [data-theme="dark"] .stat-card .stat-label{ color:#9FB0C1; }
+@media (max-width: 640px){
+  .stat-card{ padding: 10px 4px; }
+  .stat-card i{ font-size: 16px; }
+  .stat-card .stat-num{ font-size: 18px; }
+  .stat-card .stat-label{ font-size: 10px; line-height:1.2; }
+}
 
 /* Testimonials — continuous looping marquee */
 .testi-wrap{ overflow:hidden; position:relative; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
@@ -475,14 +481,15 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .form-success.show{ display:block; }
 
 /* Donation amount cards */
-.amount-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: var(--s-3); margin-bottom: var(--s-4); }
-@media (max-width:700px){ .amount-grid{ grid-template-columns: repeat(2,1fr); } }
-.amount-card{ border:2px solid var(--gray-200); border-radius: var(--radius-card); padding: var(--s-3); cursor:pointer; text-align:center; transition: all .3s var(--ease); background:#fff; min-width:0; }
+.amount-grid{ display:grid; grid-template-columns: repeat(5,1fr); gap: var(--s-3); margin-bottom: var(--s-4); }
+@media (max-width:700px){ .amount-grid{ grid-template-columns: repeat(3,1fr); gap:10px; } }
+@media (max-width:480px){ .amount-grid{ grid-template-columns: repeat(2,1fr); } }
+.amount-card{ border:2px solid var(--gray-200); border-radius: var(--radius-card); padding: var(--s-2) 8px; cursor:pointer; text-align:center; transition: all .3s var(--ease); background:#fff; min-width:0; }
 [data-theme="dark"] .amount-card{ background: var(--gray-50); }
 .amount-card:hover{ border-color: var(--blue); transform: translateY(-4px); }
 .amount-card.selected{ border-color: var(--blue); background: var(--blue-light); }
-.amount-card .amt{ font-family: var(--font-head); font-weight:800; font-size:24px; color: var(--blue); white-space:nowrap; }
-.amount-card p{ font-size:13.5px; color:#5A6B7B; margin-top:6px; }
+.amount-card .amt{ font-family: var(--font-head); font-weight:800; font-size:16px; color: var(--blue); white-space:nowrap; }
+.amount-card p{ font-size:11.5px; color:#5A6B7B; margin-top:4px; }
 [data-theme="dark"] .amount-card p{ color:#9FB0C1; }
 @media (max-width:700px){
   .amount-grid{ gap: 10px; }

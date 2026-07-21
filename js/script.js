@@ -276,19 +276,15 @@
         var wrap = card.closest(".amount-grid");
         wrap.querySelectorAll(".amount-card").forEach(function(c){ c.classList.remove("selected"); });
         card.classList.add("selected");
-        var customField = document.querySelector("#customAmountField");
         var donationInput = document.querySelector("#donationAmount");
         if(donationInput){ donationInput.value = card.dataset.amount || ""; }
-        if(customField){ customField.style.display = card.dataset.amount === "custom" ? "flex" : "none"; }
+        var customInputEl = document.querySelector("#customAmount");
+        if(customInputEl){ customInputEl.value = ""; }
         var impactText = document.querySelector("#impactText");
         var sym = currentCurrencySymbol();
-        if(impactText){
-          if(card.dataset.amount === "custom"){
-            impactText.textContent = "Enter a custom amount above to see the difference it can make.";
-          } else if(card.dataset.impact){
-            var amt = parseInt(card.dataset.amount, 10).toLocaleString();
-            impactText.textContent = sym + amt + " " + card.dataset.impact;
-          }
+        if(impactText && card.dataset.impact){
+          var amt = parseInt(card.dataset.amount, 10).toLocaleString();
+          impactText.textContent = sym + amt + " " + card.dataset.impact;
         }
       });
     });
@@ -297,6 +293,7 @@
     var customAmountInput = document.querySelector("#customAmount");
     if(customAmountInput){
       customAmountInput.addEventListener("input", function(){
+        document.querySelectorAll(".amount-card.selected").forEach(function(c){ c.classList.remove("selected"); });
         var donationInput = document.querySelector("#donationAmount");
         if(donationInput){ donationInput.value = customAmountInput.value; }
         var impactText = document.querySelector("#impactText");
@@ -336,11 +333,11 @@
           if(usdInfo){ usdInfo.style.display = isUSD ? "block" : "none"; }
           if(ngnInfo){ ngnInfo.style.display = isUSD ? "none" : "block"; }
           if(currencyField){ currencyField.value = isUSD ? "USD" : "NGN"; }
-          if(customLabel){ customLabel.textContent = isUSD ? "Custom Amount ($)" : "Custom Amount (₦)"; }
+          if(customLabel){ customLabel.textContent = isUSD ? "Or enter a custom amount ($)" : "Or enter a custom amount (₦)"; }
+          if(customInput){ customInput.placeholder = isUSD ? "$ Custom amount" : "₦ Custom amount"; }
 
           // Reset selection state when switching currency
           document.querySelectorAll(".amount-card.selected").forEach(function(c){ c.classList.remove("selected"); });
-          if(customField){ customField.style.display = "none"; }
           if(customInput){ customInput.value = ""; }
           if(donationInput){ donationInput.value = ""; }
           if(impactText){ impactText.textContent = "Select an amount above to see the difference it can make."; }
