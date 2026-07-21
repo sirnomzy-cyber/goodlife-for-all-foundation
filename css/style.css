@@ -243,6 +243,8 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 }
 .hero-bg{ position:absolute; inset:0; z-index:0; }
 .hero-bg img{ width:100%; height:100%; object-fit:cover; border-radius:0; }
+.hero-bg.hero-bg-slideshow img{ position:absolute; inset:0; opacity:0; animation-name: heroSlideFade; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-fill-mode: backwards; }
+@keyframes heroSlideFade{ 0%{ opacity:0; } 4%{ opacity:1; } 16%{ opacity:1; } 20%{ opacity:0; } 100%{ opacity:0; } }
 .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,28,46,.55) 0%, rgba(8,28,46,.72) 60%, rgba(8,28,46,.92) 100%); z-index:1; }
 .mesh{ position:absolute; inset:0; z-index:2; opacity:.55; mix-blend-mode: screen; background:
   radial-gradient(circle at 20% 25%, rgba(24,165,88,.45), transparent 42%),
@@ -316,7 +318,7 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .grid-4{ display:grid; grid-template-columns: repeat(4,1fr); gap: var(--s-3); }
 .grid-5{ grid-template-columns: repeat(5,1fr) !important; }
 @media (max-width: 1024px){ .grid-4{ grid-template-columns: repeat(2,1fr);} .grid-3{ grid-template-columns: repeat(2,1fr);} .grid-5{ grid-template-columns: repeat(3,1fr) !important; } }
-@media (max-width: 640px){ .grid-4, .grid-3, .grid-2{ grid-template-columns: 1fr; } .grid-5{ grid-template-columns: 1fr !important; } }
+@media (max-width: 640px){ .grid-4, .grid-3, .grid-2{ grid-template-columns: 1fr; } .grid-5{ grid-template-columns: repeat(2,1fr) !important; } }
 
 /* Bento grid */
 .bento{ display:grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 210px; gap: var(--s-3); }
