@@ -367,11 +367,10 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .b-card{
   border-radius: var(--radius-card); padding: var(--s-4); color:#fff; position:relative; overflow:hidden;
   display:flex; flex-direction:column; justify-content:flex-end; background-size:cover; background-position:center;
-  transition: transform var(--dur) var(--ease), background-size .6s var(--ease);
+  transition: transform var(--dur) var(--ease);
 }
-.b-card:hover{ background-size:112%; }
 .b-card::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,28,46,.15) 0%, rgba(8,28,46,.85) 100%); transition: background .4s var(--ease); }
-.b-card:hover{ transform: translateY(-6px) scale(1.01); }
+.b-card:hover{ transform: translateY(-6px) scale(1.035); }
 .b-card:hover::before{ background: linear-gradient(180deg, rgba(10,77,162,.25) 0%, rgba(8,28,46,.9) 100%); }
 .b-card > *{ position:relative; z-index:1; }
 .b-card h3{ color:#fff; font-size:20px; }
