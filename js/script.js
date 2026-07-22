@@ -390,7 +390,7 @@
       });
     });
 
-    /* ---------- Form Validation ---------- */
+    /* ---------- Form Validation + Submission (Web3Forms) ---------- */
     document.querySelectorAll("form[data-validate]").forEach(function(form){
       form.addEventListener("submit", function(e){
         e.preventDefault();
@@ -407,11 +407,38 @@
         if(emailField && emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)){
           valid = false; emailField.style.borderColor = "var(--error)";
         }
+        if(!valid){ return; }
+
         var successBox = form.parentElement.querySelector(".form-success") || form.querySelector(".form-success");
-        if(valid){
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var originalBtnHTML = submitBtn ? submitBtn.innerHTML : "";
+        var accessKeyField = form.querySelector('input[name="access_key"]');
+
+        function finishSuccess(){
           form.reset();
           document.querySelectorAll(".amount-card.selected").forEach(function(c){ c.classList.remove("selected"); });
           if(successBox){ successBox.classList.add("show"); setTimeout(function(){ successBox.classList.remove("show"); }, 6000); }
+        }
+
+        if(accessKeyField){
+          if(submitBtn){ submitBtn.disabled = true; submitBtn.innerHTML = "Sending..."; }
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: new FormData(form)
+          }).then(function(res){ return res.json(); }).then(function(data){
+            if(data && data.success){
+              finishSuccess();
+            } else {
+              alert("Something went wrong sending your message. Please try again, or email us directly.");
+            }
+          }).catch(function(){
+            alert("Something went wrong sending your message. Please check your connection and try again.");
+          }).finally(function(){
+            if(submitBtn){ submitBtn.disabled = false; submitBtn.innerHTML = originalBtnHTML; }
+          });
+        } else {
+          finishSuccess();
         }
       });
     });
