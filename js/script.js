@@ -427,7 +427,7 @@
         }
 
         if(accessKeyField){
-          if(submitBtn){ submitBtn.disabled = true; submitBtn.innerHTML = "Sending..."; }
+          if(submitBtn){ submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...'; }
           fetch("https://api.web3forms.com/submit", {
             method: "POST",
             headers: { "Accept": "application/json" },
@@ -495,6 +495,80 @@
     document.querySelectorAll("img").forEach(function(img){
       if(!img.hasAttribute("loading")){ img.setAttribute("loading", "lazy"); }
     });
+
+    /* ---------- Motion Preference Guards ---------- */
+    var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var supportsHover = window.matchMedia && window.matchMedia("(hover: hover)").matches;
+
+    /* ---------- Text Animation: Homepage Hero Typewriter ---------- */
+    var typedEl = document.querySelector(".hero-subline[data-typed]");
+    if(typedEl && !prefersReducedMotion){
+      var phrases = ["Building Hope.", "Creating Opportunities.", "Empowering Communities.", "Transforming Lives."];
+      var caret = document.createElement("span");
+      caret.className = "typed-cursor";
+      var pIndex = 0, cIndex = 0, deleting = false;
+      typedEl.textContent = "";
+      typedEl.appendChild(caret);
+      function typeStep(){
+        var current = phrases[pIndex];
+        if(!deleting){
+          cIndex++;
+          typedEl.textContent = current.slice(0, cIndex);
+          typedEl.appendChild(caret);
+          if(cIndex === current.length){
+            deleting = true;
+            setTimeout(typeStep, 1600);
+            return;
+          }
+          setTimeout(typeStep, 55);
+        } else {
+          cIndex--;
+          typedEl.textContent = current.slice(0, cIndex);
+          typedEl.appendChild(caret);
+          if(cIndex === 0){
+            deleting = false;
+            pIndex = (pIndex + 1) % phrases.length;
+            setTimeout(typeStep, 300);
+            return;
+          }
+          setTimeout(typeStep, 28);
+        }
+      }
+      typeStep();
+    }
+
+    /* ---------- Mouse Interaction: Cursor Glow (hero/page-hero sections, desktop only) ---------- */
+    if(supportsHover && !prefersReducedMotion){
+      var glow = document.createElement("div");
+      glow.className = "cursor-glow";
+      document.body.appendChild(glow);
+      var glowTargets = document.querySelectorAll(".hero, .page-hero");
+      var overGlowZone = false;
+      glowTargets.forEach(function(zone){
+        zone.addEventListener("mouseenter", function(){ overGlowZone = true; glow.classList.add("active"); });
+        zone.addEventListener("mouseleave", function(){ overGlowZone = false; glow.classList.remove("active"); });
+      });
+      window.addEventListener("mousemove", function(e){
+        if(!overGlowZone) return;
+        glow.style.transform = "translate(" + (e.clientX - 210) + "px," + (e.clientY - 210) + "px)";
+      });
+    }
+
+    /* ---------- Mouse Interaction: Magnetic Buttons ---------- */
+    if(supportsHover && !prefersReducedMotion){
+      document.querySelectorAll(".btn-primary, .btn-gold").forEach(function(btn){
+        btn.classList.add("magnetic");
+        btn.addEventListener("mousemove", function(e){
+          var rect = btn.getBoundingClientRect();
+          var relX = (e.clientX - rect.left - rect.width / 2) * 0.25;
+          var relY = (e.clientY - rect.top - rect.height / 2) * 0.35;
+          btn.style.transform = "translate(" + relX + "px," + relY + "px)";
+        });
+        btn.addEventListener("mouseleave", function(){
+          btn.style.transform = "";
+        });
+      });
+    }
 
   });
 

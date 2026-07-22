@@ -367,8 +367,9 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .b-card{
   border-radius: var(--radius-card); padding: var(--s-4); color:#fff; position:relative; overflow:hidden;
   display:flex; flex-direction:column; justify-content:flex-end; background-size:cover; background-position:center;
-  transition: transform var(--dur) var(--ease);
+  transition: transform var(--dur) var(--ease), background-size .6s var(--ease);
 }
+.b-card:hover{ background-size:112%; }
 .b-card::before{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(8,28,46,.15) 0%, rgba(8,28,46,.85) 100%); transition: background .4s var(--ease); }
 .b-card:hover{ transform: translateY(-6px) scale(1.01); }
 .b-card:hover::before{ background: linear-gradient(180deg, rgba(10,77,162,.25) 0%, rgba(8,28,46,.9) 100%); }
@@ -660,3 +661,110 @@ body.modal-open{ overflow:hidden; }
 .masonry .m-item .cap{ position:absolute; bottom:0; left:0; right:0; padding: var(--s-2); background: linear-gradient(0deg, rgba(8,28,46,.85), transparent); color:#fff; font-size:13px; opacity:0; transition: opacity .3s; }
 .masonry .m-item:hover .cap{ opacity:1; }
 @media (max-width:700px){ .masonry{ columns: 1 280px; } }
+
+/* ==========================================================================
+   LIVING SITE — MINIMALIST ANIMATION LAYER
+   Page load, scroll, hover, text, image, background, nav, icon, form,
+   mouse-interaction and premium micro-animations. All respect the
+   prefers-reduced-motion rule already defined at the top of this file.
+   ========================================================================== */
+
+/* ---------- 1. Image Animations — slow "living" zoom on single-image heroes ---------- */
+.hero-bg:not(.hero-bg-slideshow) img{ animation: kenBurns 20s ease-in-out infinite alternate; }
+@keyframes kenBurns{ 0%{ transform: scale(1); } 100%{ transform: scale(1.07); } }
+
+/* Card / thumbnail image zoom already exists for .prog-card — extend the same feel site-wide */
+/* Card / thumbnail image zoom already exists for .prog-card — extend the same feel site-wide (see .b-card:hover above) */
+.testi-card img, .square-card img, .masonry .m-item img{ transition: transform .6s var(--ease); }
+
+/* ---------- 2. Text Animations ---------- */
+.hl-gold{
+  background: linear-gradient(100deg, var(--gold) 30%, #fff3c4 45%, var(--gold) 60%);
+  background-size: 220% auto;
+  -webkit-background-clip: text; background-clip:text; color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+@keyframes shimmer{ 0%{ background-position: 0% 50%; } 100%{ background-position: -220% 50%; } }
+
+.typed-cursor{ display:inline-block; width:2px; margin-left:2px; background: var(--gold); animation: caretBlink 0.9s steps(1) infinite; }
+@keyframes caretBlink{ 0%,49%{ opacity:1; } 50%,100%{ opacity:0; } }
+
+/* ---------- 3. Navigation Animations ---------- */
+.brand{ transition: transform .35s var(--ease); }
+.brand:hover .logo-img{ transform: scale(1.05) rotate(-2deg); }
+.brand .logo-img{ transition: transform .35s var(--ease); }
+.site-header{ transition: background-color .4s var(--ease), box-shadow .4s var(--ease), backdrop-filter .4s var(--ease); }
+.nav-toggle span{ transition: transform .3s var(--ease), opacity .3s var(--ease); }
+.main-nav ul{ transition: opacity .35s var(--ease), transform .35s var(--ease); }
+
+/* ---------- 4. Icon Animations ---------- */
+.icon-tile{ transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+.card:hover .icon-tile, .square-card:hover .icon-tile{ transform: scale(1.14) rotate(-6deg); }
+.mission-pill-icon{ transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.mission-pill:hover .mission-pill-icon{ transform: scale(1.18) rotate(8deg); }
+.b-icon{ transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.b-card:hover .b-icon{ transform: scale(1.2) translateY(-2px); }
+.stat-card i{ transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.stat-card:hover i{ transform: scale(1.15) rotate(-5deg); }
+.p-step i{ transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.p-step:hover i{ transform: scale(1.15); }
+.fab.donate i{ animation: heartbeat 2.4s ease-in-out infinite; }
+@keyframes heartbeat{ 0%,100%{ transform:scale(1); } 15%{ transform:scale(1.18); } 30%{ transform:scale(1); } 45%{ transform:scale(1.12); } 60%{ transform:scale(1); } }
+.badge i, .trust-badges i{ transition: transform .3s var(--ease); }
+.badge:hover i{ transform: scale(1.2); }
+
+/* ---------- 5. Hover Animations (links, socials, tags) ---------- */
+.social-links a, .footer-social a{ transition: transform .35s cubic-bezier(.34,1.56,.64,1), background-color .3s var(--ease); }
+.social-links a:hover, .footer-social a:hover{ transform: translateY(-4px) scale(1.08); }
+.tag{ transition: transform .3s var(--ease); }
+.tag:hover{ transform: translateY(-2px); }
+a{ transition: color .25s var(--ease); }
+
+/* ---------- 6. Background Animations ---------- */
+section[style*="grad-hope"]{ background-size: 200% 200% !important; animation: gradientDrift 16s ease infinite; }
+@keyframes gradientDrift{ 0%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } 100%{ background-position:0% 50%; } }
+
+/* ---------- 7. Form Animations ---------- */
+.form-success{
+  display:block; max-height:0; opacity:0; overflow:hidden; padding:0 var(--s-3);
+  margin-top:0; transform: translateY(-6px) scale(.97);
+  transition: max-height .5s var(--ease), opacity .4s var(--ease), transform .4s var(--ease), margin-top .4s var(--ease), padding .4s var(--ease);
+}
+.form-success.show{ max-height:220px; opacity:1; padding: var(--s-3); margin-top: var(--s-3); transform: translateY(0) scale(1); }
+.field input, .field textarea, .field select{ transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .2s var(--ease); }
+.field input:focus, .field textarea:focus, .field select:focus{ transform: translateY(-1px); }
+.amount-card{ transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease); }
+.amount-card.selected{ animation: selectPop .35s var(--ease); }
+@keyframes selectPop{ 0%{ transform: scale(1); } 45%{ transform: scale(1.05); } 100%{ transform: scale(1); } }
+.btn[disabled]{ opacity:.75; cursor: progress; }
+
+/* ---------- 8. Mouse Interaction Animations ---------- */
+.cursor-glow{
+  position: fixed; top:0; left:0; width:420px; height:420px; border-radius:50%;
+  pointer-events:none; z-index:1; opacity:0; transition: opacity .5s var(--ease);
+  background: radial-gradient(circle, rgba(10,77,162,.10), transparent 70%);
+  transform: translate(-999px,-999px);
+  will-change: transform;
+}
+[data-theme="dark"] .cursor-glow{ background: radial-gradient(circle, rgba(244,180,0,.10), transparent 70%); }
+.cursor-glow.active{ opacity:1; }
+.magnetic{ will-change: transform; }
+
+/* ---------- 9. Advanced / Premium ---------- */
+.scroll-progress{ transition: width .1s linear; }
+[data-count]{ font-variant-numeric: tabular-nums; }
+.hero-content{ animation: heroRise .9s var(--ease) both; }
+@keyframes heroRise{ 0%{ opacity:0; transform: translateY(18px); } 100%{ opacity:1; transform: translateY(0); } }
+
+/* Stagger groups: reuse existing .stagger + [data-reveal] + --i infrastructure (delay only, no opacity override) */
+
+@media (prefers-reduced-motion: reduce){
+  .hl-gold{ animation:none; background:none; -webkit-background-clip:initial; background-clip:initial; color: var(--gold); }
+  .fab.donate i{ animation:none; }
+  .hero-bg:not(.hero-bg-slideshow) img{ animation:none; }
+  section[style*="grad-hope"]{ animation:none; }
+  .cursor-glow{ display:none; }
+}
+@media (hover:none){
+  .cursor-glow{ display:none; }
+}
