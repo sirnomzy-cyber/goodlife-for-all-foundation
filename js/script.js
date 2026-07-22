@@ -371,11 +371,16 @@
     var payRow = document.querySelector("#payMethodRow");
     if(payRow){
       var bankReveal = document.querySelector("#bankDetailsReveal");
+      var txnRefInput = document.querySelector("#dTxnRef");
+      var txnConfirmInput = document.querySelector("#dTxnConfirm");
       payRow.querySelectorAll("[data-pay]").forEach(function(btn){
         btn.addEventListener("click", function(){
           payRow.querySelectorAll("[data-pay]").forEach(function(b){ b.classList.remove("active"); });
           btn.classList.add("active");
-          if(bankReveal){ bankReveal.style.display = (btn.dataset.pay === "bank") ? "block" : "none"; }
+          var isBank = btn.dataset.pay === "bank";
+          if(bankReveal){ bankReveal.style.display = isBank ? "block" : "none"; }
+          if(txnRefInput){ txnRefInput.required = isBank; if(!isBank){ txnRefInput.value = ""; } }
+          if(txnConfirmInput){ txnConfirmInput.required = isBank; if(!isBank){ txnConfirmInput.checked = false; } }
         });
       });
     }
@@ -396,7 +401,8 @@
         e.preventDefault();
         var valid = true;
         form.querySelectorAll("[required]").forEach(function(field){
-          if(!field.value.trim()){
+          var isEmpty = (field.type === "checkbox") ? !field.checked : !field.value.trim();
+          if(isEmpty){
             valid = false;
             field.style.borderColor = "var(--error)";
           } else {
