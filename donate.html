@@ -126,7 +126,7 @@
         <h3 style="font-size:15px;font-family:var(--font-head);font-weight:700;margin-bottom:4px;"><span class="step-num">3</span> Confirm Your Donation</h3>
         <p style="font-size:13.5px;color:#5A6B7B;margin-bottom:16px;">Tell us who you are and confirm your transfer so we can match it to your gift.</p>
 
-        <form data-validate class="mt-2">
+        <form data-validate class="mt-2" enctype="multipart/form-data">
           <input type="hidden" name="access_key" value="5323d565-a1c2-4b7e-b50b-c8671c166797">
           <input type="hidden" name="subject" value="New Donation Submission — GLAF Website">
           <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
@@ -145,14 +145,14 @@
           <p class="hint mt-2">Secure payment gateway integration to be connected here (Paystack).</p>
 
           <div id="bankDetailsReveal" style="display:block;">
-            <div class="field mt-3" id="txnRefField">
-              <label for="dTxnRef">Bank Transaction Reference / Teller Number <span style="color:var(--error);">*</span></label>
-              <input type="text" id="dTxnRef" name="transaction_reference" placeholder="e.g. from your bank app or teller slip" required>
-              <p class="hint mt-1" style="font-weight:400;">Please complete your transfer first — we use this reference to match your donation to the funds received.</p>
+            <div class="field mt-3" id="txnProofField">
+              <label for="dPaymentProof">Upload Screenshot Of Payment <span style="color:var(--error);">*</span></label>
+              <input type="file" id="dPaymentProof" name="attachment" accept="image/*,.pdf" required>
+              <p class="hint mt-1" style="font-weight:400;">Please attach a screenshot or receipt of your successful transfer (from your bank app or SMS alert). We require this for proper donation documentation and to confirm your gift was received.</p>
             </div>
             <label class="flex gap-2 mt-2" id="txnConfirmWrap" style="align-items:flex-start;font-size:13.5px;color:var(--charcoal);cursor:pointer;">
               <input type="checkbox" id="dTxnConfirm" name="transfer_confirmed" value="Yes — transfer completed" required style="margin-top:3px;">
-              <span>I confirm that I have already completed this bank transfer.</span>
+              <span>I confirm that this screenshot reflects a bank transfer I have already completed.</span>
             </label>
           </div>
 

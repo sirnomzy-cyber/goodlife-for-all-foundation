@@ -371,7 +371,7 @@
     var payRow = document.querySelector("#payMethodRow");
     if(payRow){
       var bankReveal = document.querySelector("#bankDetailsReveal");
-      var txnRefInput = document.querySelector("#dTxnRef");
+      var txnProofInput = document.querySelector("#dPaymentProof");
       var txnConfirmInput = document.querySelector("#dTxnConfirm");
       payRow.querySelectorAll("[data-pay]").forEach(function(btn){
         btn.addEventListener("click", function(){
@@ -379,7 +379,7 @@
           btn.classList.add("active");
           var isBank = btn.dataset.pay === "bank";
           if(bankReveal){ bankReveal.style.display = isBank ? "block" : "none"; }
-          if(txnRefInput){ txnRefInput.required = isBank; if(!isBank){ txnRefInput.value = ""; } }
+          if(txnProofInput){ txnProofInput.required = isBank; if(!isBank){ txnProofInput.value = ""; } }
           if(txnConfirmInput){ txnConfirmInput.required = isBank; if(!isBank){ txnConfirmInput.checked = false; } }
         });
       });
