@@ -217,6 +217,7 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
 .main-nav a:hover::after, .main-nav a.active::after{ width:100%; }
 .main-nav a.active{ color:#fff; }
 .nav-cta{ display:flex; align-items:center; gap: var(--s-3); }
+.nav-donate-item{ display:none; }
 
 .nav-toggle{ display:none; flex-direction:column; gap:5px; width:32px; z-index:1200; }
 .nav-toggle span{ height:2px; width:100%; background:#fff; border-radius:2px; transition: all .3s var(--ease); }
@@ -234,6 +235,19 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
   .main-nav ul.open{ transform: translateX(0); }
   .main-nav a{ font-size:19px; }
   .nav-toggle{ display:flex; }
+  .nav-donate-item{ display:block; margin-top: var(--s-4); }
+  .nav-donate-link{
+    display:inline-flex; align-items:center; gap:9px; background: var(--grad-gold); color: var(--navy) !important;
+    font-weight:800; font-size:17px; padding:15px 28px; border-radius:999px;
+    box-shadow: 0 10px 26px -6px rgba(244,180,0,.55); animation: navDonatePulse 2.4s ease-in-out infinite;
+  }
+  .nav-donate-link::after{ display:none; }
+  .nav-donate-link:hover{ transform: translateY(-2px); }
+  .nav-donate-link i{ animation: heartbeat 2.4s ease-in-out infinite; }
+  @keyframes navDonatePulse{
+    0%,100%{ box-shadow: 0 10px 26px -6px rgba(244,180,0,.55), 0 0 0 0 rgba(244,180,0,.5); }
+    50%{ box-shadow: 0 10px 26px -6px rgba(244,180,0,.55), 0 0 0 10px rgba(244,180,0,0); }
+  }
   .nav-cta .btn-outline{ display:none; }
   .nav-backdrop{ position:fixed; inset:0; background:rgba(8,28,46,.5); backdrop-filter:blur(2px); z-index:1100; opacity:0; pointer-events:none; transition:opacity .35s var(--ease); }
   .nav-backdrop.open{ opacity:1; pointer-events:auto; }
@@ -809,3 +823,32 @@ section[style*="grad-hope"]{ background-size: 200% 200% !important; animation: g
   .partner-flow{ padding: 150px 16px; }
   .pf-label{ width:160px; }
 }
+
+/* ==========================================================================
+   LEGAL / POLICY PAGES
+   ========================================================================== */
+.legal-hero{ padding: calc(var(--nav-h) + 56px) 0 var(--s-6); }
+.legal-updated{ display:inline-block; background: var(--blue-light); color: var(--blue); font-size:12.5px; font-weight:700; padding:6px 14px; border-radius:999px; margin-bottom: var(--s-3); }
+[data-theme="dark"] .legal-updated{ background: var(--gray-100); }
+.legal-content{ max-width:800px; margin:0 auto; }
+.legal-content h2{ font-size:23px; margin-top: var(--s-7); margin-bottom: var(--s-2); }
+.legal-content > .legal-content-block:first-child h2{ margin-top:0; }
+.legal-content h3{ font-size:17px; margin-top: var(--s-4); margin-bottom: var(--s-2); }
+.legal-content p{ color:#5A6B7B; font-size:15.5px; line-height:1.75; margin-bottom: var(--s-3); }
+[data-theme="dark"] .legal-content p{ color:#9FB0C1; }
+.legal-content ul{ margin:0 0 var(--s-3) 0; }
+.legal-content ul li{ position:relative; padding-left:24px; color:#5A6B7B; font-size:15.5px; line-height:1.7; margin-bottom:9px; }
+[data-theme="dark"] .legal-content ul li{ color:#9FB0C1; }
+.legal-content ul li::before{ content:"\f00c"; font-family:"Font Awesome 6 Free"; font-weight:900; position:absolute; left:0; top:2px; color: var(--blue); font-size:11px; }
+.legal-content strong{ color: var(--navy); }
+[data-theme="dark"] .legal-content strong{ color:#fff; }
+.legal-content a{ color: var(--blue); text-decoration:underline; text-underline-offset:2px; }
+.legal-toc{ background: var(--gray-50); border:1px solid var(--gray-100); border-radius: var(--radius-card); padding: var(--s-4); margin-bottom: var(--s-6); }
+.legal-toc h4{ font-family: var(--font-head); font-size:14px; font-weight:800; color: var(--navy); margin-bottom: var(--s-2); text-transform:uppercase; letter-spacing:.04em; }
+[data-theme="dark"] .legal-toc h4{ color:#fff; }
+.legal-toc ol{ list-style:none; counter-reset: toc; columns:2; gap: var(--s-3); }
+.legal-toc ol li{ counter-increment: toc; font-size:14px; margin-bottom:8px; break-inside:avoid; }
+.legal-toc ol li a{ color: var(--charcoal); text-decoration:none; }
+.legal-toc ol li a:hover{ color: var(--blue); text-decoration:underline; }
+.legal-toc ol li::before{ content: counter(toc) ". "; color: var(--blue); font-weight:700; }
+@media (max-width:640px){ .legal-toc ol{ columns:1; } }
