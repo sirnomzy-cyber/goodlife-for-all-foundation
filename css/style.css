@@ -236,10 +236,10 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
   .main-nav ul.open{ transform: translateX(0); }
   .main-nav a{ font-size:19px; }
   .nav-toggle{ display:flex; }
-  .nav-donate-item{ display:block; margin-top: var(--s-4); }
+  .nav-donate-item{ display:block; margin-top: var(--s-4); text-align:center; }
   .nav-donate-link{
-    display:inline-flex; align-items:center; gap:9px; background: var(--grad-gold); color: var(--navy) !important;
-    font-weight:800; font-size:17px; padding:15px 28px; border-radius:999px;
+    display:inline-flex; align-items:center; justify-content:center; gap:11px; background: var(--grad-gold); color: var(--navy) !important;
+    font-weight:800; font-size:17px; padding:16px 42px; border-radius:999px; width:100%;
     box-shadow: 0 10px 26px -6px rgba(244,180,0,.55); animation: navDonatePulse 2.4s ease-in-out infinite;
   }
   .nav-donate-link::after{ display:none; }
