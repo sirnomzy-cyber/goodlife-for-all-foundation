@@ -200,6 +200,7 @@ h3.h-card{ font-size: 24px; font-weight: 700; }
   .site-header.scrolled .main-nav a{ color: var(--navy); }
   .site-header.scrolled .main-nav a.active{ color: var(--blue); }
   [data-theme="dark"] .site-header.scrolled .main-nav a{ color: #fff; }
+  .nav-desktop-hide{ display:none; }
 }
 
 .brand .mark{ width:42px; height:42px; border-radius:12px; background: var(--grad-hope); display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff; box-shadow: 0 6px 18px -4px rgba(24,165,88,.6); }
